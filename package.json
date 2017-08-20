@@ -1,0 +1,17 @@
+{
+  "name": "prefect",
+  "version": "0.1.0",
+  "description": "The campus expert github bot",
+  "scripts": {
+    "start": "probot run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "probot": "^0.9.1"
+  },
+  "probot": {
+    "plugins": ["./reactions/template-enforcer"]
+  }
+}
