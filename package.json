@@ -9,9 +9,10 @@
   "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "probot": "^0.9.1"
+    "probot": "^0.9.1",
+    "probot-stale": "^1.1.0"
   },
   "probot": {
-    "plugins": ["./reactions/template-enforcer"]
+    "plugins": ["probot-stale", "./reactions/template-enforcer"]
   }
 }
