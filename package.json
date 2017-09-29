@@ -4,15 +4,21 @@
   "description": "The campus expert github bot",
   "scripts": {
     "start": "probot run",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretty": "prettier --write '{,!(node_modules)/**/}*.js'",
+    "test":
+      "prettier --list-different '{,!(node_modules)/**/}*.js' && mocha 'tests/**/*.test.js'"
   },
   "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "mocha": "^3.5.3",
     "probot": "^0.9.1",
-    "probot-stale": "^1.1.0"
+    "should": "^13.1.0"
   },
   "probot": {
-    "plugins": ["probot-stale", "./reactions/template-enforcer"]
+    "plugins": ["./scripts/template-enforcer"]
+  },
+  "devDependencies": {
+    "prettier": "^1.7.2"
   }
 }
