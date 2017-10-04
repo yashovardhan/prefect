@@ -2,6 +2,9 @@
   "name": "prefect",
   "version": "0.1.0",
   "description": "The campus expert github bot",
+  "engines": {
+    "node": "8.6.0"
+  },
   "scripts": {
     "start": "probot run",
     "pretty": "prettier --write '{,!(node_modules)/**/}*.js'",
