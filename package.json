@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "probot": "^2.0.0",
-    "behaviorbot-welcome": "behaviorbot/new-pr-welcome"
+    "behaviorbot-welcome": "behaviorbot/new-pr-welcome",
+    "probot-settings": "probot/settings",
+    "probot-reminders": "joenash/reminders"
   },
   "devDependencies": {
     "expect": "^1.20.2",
@@ -21,12 +23,14 @@
     "should": "^13.1.0"
   },
   "engines": {
-    "node": ">= 7.7.0",
+    "node": ">= 8.0.0",
     "npm": ">= 4.0.0"
   },
   "probot": {
     "plugins": [
-      "behaviorbot-welcome"
+      "behaviorbot-welcome",
+      "probot-settings",
+      "probot-reminders"
     ]
   },
   "main": "./src/main.js"
