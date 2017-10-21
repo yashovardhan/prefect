@@ -7,7 +7,7 @@ module.exports = (robot) => {
 
 	
 	robot.on('issues.opened', Greeting)
-	robot.on('pull_request.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
+	// robot.on('pull_request.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
 
   // For more information on building apps:
   // https://probot.github.io/docs/
