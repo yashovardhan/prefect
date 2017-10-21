@@ -1,14 +1,63 @@
 const Greeting = require('./actions/greeting')
+const createScheduler = require('probot-scheduler')
+const Stale = require('./actions/stale')
 
 module.exports = (robot) => {
   // Your code here
   console.log('Yay, the app was loaded!')
-	
-	robot.on('issues.opened', Greeting)
 
-  // For more information on building apps:
-  // https://probot.github.io/docs/
+  robot.on('issues.opened', Greeting)
+  const scheduler = createScheduler(robot)
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+// Unmark stale issues if a user comments
+  const events = [
+    'issue_comment',
+    'issues',
+    'pull_request',
+    'pull_request_review',
+    'pull_request_review_comment'
+  ]
+
+  robot.on(events, unmark)
+  robot.on('schedule.repository', markAndSweep)
+
+  async function unmark (context) {
+    if (!context.isBot) {
+      const stale = await forRepository(context)
+      let issue = context.payload.issue || context.payload.pull_request
+
+      // Some payloads don't include labels
+      if (!issue.labels) {
+        issue = (await context.github.issues.get(context.issue())).data
+      }
+
+      const staleLabelAdded = context.payload.action === 'labeled' &&
+        context.payload.label.name === stale.config.staleLabel
+
+      if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
+        stale.unmark(issue)
+      }
+    }
+  }
+
+  async function markAndSweep (context) {
+    const stale = await forRepository(context)
+    if (stale.config.perform) {
+      return stale.markAndSweep()
+    }
+  }
+
+  async function forRepository (context) {
+    let config = await context.config('stale.yml')
+
+    if (!config) {
+      scheduler.stop(context.payload.repository)
+      // Don't actually perform for repository without a config
+      config = {perform: false}
+    }
+
+    config = Object.assign(config, context.repo({logger: robot.log}))
+
+    return new Stale(context.github, config)
+  }
 }
