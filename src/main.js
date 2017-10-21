@@ -4,9 +4,10 @@ const CheckIfMoreThanOneModuleIsBeingSubmitted = require('./actions/multiple-mod
 module.exports = (robot) => {
   // Your code here
   console.log('Yay, the app was loaded!')
+
 	
 	robot.on('issues.opened', Greeting)
-	robot.on('issues.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
+	robot.on('pull_request.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
 
   // For more information on building apps:
   // https://probot.github.io/docs/
