@@ -1,11 +1,14 @@
 const Greeting = require('./actions/greeting')
 const createScheduler = require('probot-scheduler')
 const Stale = require('./actions/stale')
+const CheckIfMoreThanOneModuleIsBeingSubmitted = require('./actions/multiple-module-warning')
 
 module.exports = (robot) => {
-  // Your code here
+  
   console.log('Yay, the app was loaded!')
 
+	// robot.on('pull_request.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
+  
   robot.on('issues.opened', Greeting)
   const scheduler = createScheduler(robot)
 
