@@ -10,7 +10,7 @@ module.exports = (robot) => {
   const scheduler = createScheduler(robot)
 
 // Unmark stale issues if a user comments
-  const events = [
+  const staleEvents = [
     'issue_comment',
     'issues',
     'pull_request',
@@ -18,7 +18,7 @@ module.exports = (robot) => {
     'pull_request_review_comment'
   ]
 
-  robot.on(events, unmark)
+  robot.on(staleEvents, unmark)
   robot.on('schedule.repository', markAndSweep)
 
   async function unmark (context) {
@@ -48,16 +48,6 @@ module.exports = (robot) => {
   }
 
   async function forRepository (context) {
-    let config = await context.config('stale.yml')
-
-    if (!config) {
-      scheduler.stop(context.payload.repository)
-      // Don't actually perform for repository without a config
-      config = {perform: false}
-    }
-
-    config = Object.assign(config, context.repo({logger: robot.log}))
-
-    return new Stale(context.github, config)
+    return new Stale(context.github, context.repo({logger: robot.log}))
   }
 }
