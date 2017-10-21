@@ -6,7 +6,7 @@
   "license": "ISC",
   "repository": "https://github.com/campus-experts/prefect.git",
   "scripts": {
-    "start": "probot run ./index.js",
+    "start": "probot run ./src/main.js",
     "test": "mocha 'tests/**/*.test.js'"
   },
   "dependencies": {
@@ -23,5 +23,5 @@
     "node": ">= 7.7.0",
     "npm": ">= 4.0.0"
   },
-  "main": "index.js"
+  "main": "./src/main.js"
 }
