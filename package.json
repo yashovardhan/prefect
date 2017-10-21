@@ -12,8 +12,7 @@
   "dependencies": {
     "probot": "^2.0.0",
     "behaviorbot-welcome": "behaviorbot/new-pr-welcome",
-    "probot-settings": "probot/settings",
-    "probot-reminders": "joenash/reminders"
+    "probot-settings": "probot/settings"
   },
   "devDependencies": {
     "expect": "^1.20.2",
@@ -29,8 +28,7 @@
   "probot": {
     "plugins": [
       "behaviorbot-welcome",
-      "probot-settings",
-      "probot-reminders"
+      "probot-settings"
     ]
   },
   "main": "./src/main.js"
