@@ -1,27 +1,26 @@
 {
   "name": "prefect",
-  "version": "0.1.0",
-  "description": "The campus expert github bot",
-  "engines": {
-    "node": "8.6.0"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "author": "Campus Experts <education@github.com> (education.github.com/experts)",
+  "license": "ISC",
+  "repository": "https://github.com/campus-experts/prefect.git",
   "scripts": {
-    "start": "probot run",
-    "pretty": "prettier --write '{,!(node_modules)/**/}*.js'",
-    "test":
-      "prettier --list-different '{,!(node_modules)/**/}*.js' && mocha 'tests/**/*.test.js'"
+    "start": "probot run ./index.js",
+    "test": "mocha && standard"
   },
-  "author": "Elliot Blackburn <elliot.blackburn@gmail.com>",
-  "license": "MIT",
   "dependencies": {
-    "mocha": "^3.5.3",
-    "probot": "^0.9.1",
-    "should": "^13.1.0"
-  },
-  "probot": {
-    "plugins": ["./scripts/template-enforcer"]
+    "probot": "^2.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.7.2"
-  }
+    "expect": "^1.20.2",
+    "localtunnel": "^1.8.2",
+    "mocha": "^3.2.0",
+    "standard": "^10.0.3"
+  },
+  "engines": {
+    "node": ">= 7.7.0",
+    "npm": ">= 4.0.0"
+  },
+  "main": "index.js"
 }

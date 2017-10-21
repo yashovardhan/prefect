@@ -1,27 +1,15 @@
-# Prefect
+# prefect
 
-This is the github campus expert prefect, it is responsible for helping to maintain our public and private repositories.
+> a GitHub App built with [probot](https://github.com/probot/probot) that 
 
-## Reactions
+## Setup
 
-Prefect reacts to a number of GitHub events via the GitHub API. Below is a list of reactions prefect performs.
+```
+# Install dependencies
+npm install
 
-* Template Enforcer - Checks issues and pull requests for template compliancy, if a new issue or PR is created which is not complaint with the template, it will prompt the creator to correct the problem.
+# Run the bot
+npm start
+```
 
-## Developing
-
-Prefect is built using the [Probot]() framework, you will need some understanding of the [Probot API]().
-
-Prefect contains three main directories.
-
-## Scripts
-
-Contains all the probot specific code, this is primarily listening for webhooks and making the final response.
-
-## Shared
-
-Holds all non-probot specific code which can be shared across all the probot scripts.
-
-## Tests
-
-Contains all unit tests for the Shared code.
+See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this app.
