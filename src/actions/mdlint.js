@@ -17,9 +17,11 @@ module.exports = async function(context) {
     return await res.text();
   }
 
-  const contents = files.data.map(async file => {
-    return [file.filename, await fetchOne(file.raw_url)];
-  });
+  const contents = await Promise.all(
+    files.data.map(async file => {
+      return [file.filename, await fetchOne(file.raw_url)];
+    })
+  );
 
   console.log(contents);
 
