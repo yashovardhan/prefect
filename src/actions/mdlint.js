@@ -2,12 +2,12 @@ var markdownlint = require("markdownlint");
 var fetch = require("node-fetch");
 
 module.exports = async function(context) {
-  console.log("github client:");
-  console.log(context.github);
   const params = context.issue();
   const files = await context.github.pullRequests.getFiles(params);
 
   console.log("mdlint starting");
+  console.log("github client:");
+  console.log(JSON.stringify(context.github, null));
   console.log(files);
 
   console.log("datas");
