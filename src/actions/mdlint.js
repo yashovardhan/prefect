@@ -9,7 +9,7 @@ module.exports = async function(context) {
   console.log(files);
 
   const contents = await Promise.all(
-    files.map(file => {
+    files.data.map(file => {
       fetch(file.raw_url)
         .then(function(res) {
           return res.text();
