@@ -8,6 +8,10 @@ module.exports = async function(context) {
   console.log("mdlint starting");
   console.log(files);
 
+  console.log("datas");
+
+  console.log(files.data);
+
   const contents = await Promise.all(
     files.data.map(file => {
       fetch(file.raw_url)
