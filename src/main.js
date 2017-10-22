@@ -8,8 +8,8 @@ module.exports = (robot) => {
 
 
 	robot.on('issues.opened', Greeting)
-  robot.on('pull_request_opened', Mdlint)
-  
+  robot.on('pull_request.opened', Mdlint)
+
 	// robot.on('pull_request.opened', CheckIfMoreThanOneModuleIsBeingSubmitted)
 
   // For more information on building apps:
