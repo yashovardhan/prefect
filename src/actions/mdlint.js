@@ -6,20 +6,23 @@ module.exports = async function(context) {
   const files = context.github.pullRequests.getFiles(params);
 
   console.log("mdlint starting");
+  console.log(files);
 
   const contents = await Promise.all(
     files.map(file => {
-      fetch(file.raw_url).then(function(res) {
-        return res.text();
-      }).then(function(text){
-        return [file.filename, text];
-      })
+      fetch(file.raw_url)
+        .then(function(res) {
+          return res.text();
+        })
+        .then(function(text) {
+          return [file.filename, text];
+        });
     })
   );
 
   const strings = {};
 
-  contents.forEach(function(pair){
+  contents.forEach(function(pair) {
     strings[pair[0]] = pair[1];
     console.log(pair);
   });
