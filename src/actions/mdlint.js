@@ -5,6 +5,8 @@ module.exports = async function(context) {
   const params = context.issue();
   const files = context.github.pullRequests.getFiles(params);
 
+  console.log("mdlint starting");
+
   const contents = await Promise.all(
     files.map(file => {
       fetch(file.raw_url).then(function(res) {
@@ -19,6 +21,7 @@ module.exports = async function(context) {
 
   contents.forEach(function(pair){
     strings[pair[0]] = pair[1];
+    console.log(pair);
   });
 
   var options = {
@@ -30,6 +33,8 @@ module.exports = async function(context) {
       return { body: result.toString() };
     }
   });
+
+  console.log(lintResult);
 
   // Post a comment on the issue
   return context.github.issues.createComment(params(lintResult));
