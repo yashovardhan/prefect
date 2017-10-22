@@ -3,7 +3,7 @@ var fetch = require("node-fetch");
 
 module.exports = async function(context) {
   const params = context.issue();
-  const files = context.github.pullRequests.getFiles(params);
+  const files = await context.github.pullRequests.getFiles(params);
 
   console.log("mdlint starting");
   console.log(files);
