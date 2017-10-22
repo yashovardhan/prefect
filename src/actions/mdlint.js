@@ -3,7 +3,7 @@ var fetch = require("node-fetch");
 
 module.exports = async function(context) {
   console.log("github client:");
-  console.log(context.github());
+  console.log(context.github);
   const params = context.issue();
   const files = await context.github.pullRequests.getFiles(params);
 
