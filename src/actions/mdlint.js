@@ -17,6 +17,9 @@ module.exports = async function(context) {
 
   const strings = {};
 
+  contents.forEach(function(pair){
+    strings[pair[0]] = pair[1];
+  });
 
   var options = {
     strings: contents
