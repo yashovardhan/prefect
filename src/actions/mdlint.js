@@ -20,6 +20,8 @@ module.exports = async function(context) {
     })
   );
 
+  console.log(contents);
+
   const strings = {};
 
   contents.forEach(function(pair) {
