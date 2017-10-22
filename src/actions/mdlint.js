@@ -15,10 +15,13 @@ module.exports = async function(context) {
   const contents = await Promise.all(
     files.data.map(file => {
       fetch(file.raw_url).then(function(res) {
-        return [file.filename, res.text()];
+        return res.text();
       });
     })
-  );
+  ).then(function(text) {
+    console.log(text);
+    //return [file.filename, text];
+  });
 
   console.log(contents);
 
